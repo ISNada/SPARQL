@@ -1,4 +1,3 @@
-package jena.pack;
 import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
@@ -13,35 +12,14 @@ public class QueryExample {
 	public static void main(String [] args) {
 		
 		//Store the file path in a string
-		String OWLpath = "C:/Users/nadaa/Desktop/geography.owl";
+		String OWLpath = "Resources/geography.owl";
 		
 		//create a model
 		Model model = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
 		//model reads the file path
 		model.read(OWLpath);
 					
-		
-		//query to show cities -- DiD NOT WORK
-	/*	String query = 
-				"PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
-				+"PREFIX owl: <https://www.w3.org/2002/07/owl#>"
-				+"PREFIX rdfs: <https://www.w3.org/2000/01/rdf-schema#>"
-				+"SELECT DISTINCT ?City ?isCityOf "
-				+"WHERE "
-				+"{?Subclass rdfs:SubClassOf ?Class .}" + "ORDER BY ?Class "; 
-	*/
-		
-		//SHOW CITY - CAPITAL - STATE  -- DID NOT WORK
-	String catgQuery = 
-			"PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
-			+"PREFIX owl: <https://www.w3.org/2002/07/owl#>"
-			+"PREFIX rdfs: <https://www.w3.org/2000/01/rdf-schema#>"
-			+"SELECT DISTINCT ?City ?Capital ?State "
-			+"WHERE "
-			+"{"
-			+ "		?Class rdf:type ?DatatypeProperty ."
-			+" } ORDER BY ?DatatypeProperty "; 
-
+	
 		//query show all the data
 		String fullQuery = 
 				"PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
@@ -71,22 +49,3 @@ public class QueryExample {
 				
 		
 	}
-
-
-
-
-//rint classes and subclasses
-		/*ExtendedIterator <?> classes = ((OntModel) model).listClasses();
-		while (classes.hasNext()) {
-			OntClass oclass = (OntClass) classes.next();
-			if(oclass.getLocalName()==null)
-				break; 
-			
-			System.out.println("\nClass: "+ oclass.getLocalName());
-			for(Iterator <?> i = oclass.listSubClasses(); i.hasNext();) {
-				
-				OntClass ontclass = (OntClass) i.next();
-				System.out.println("Subclass: " + ontclass.getLocalName()+"\n");		
-			}
-			
-		} */
